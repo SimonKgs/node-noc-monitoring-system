@@ -9,8 +9,13 @@ export class Server {
         
 
         CronService.createJob('*/5 * * * * *', () => {
-            const date = new Date();
-            new CheckService().execute( 'https://google.com' )
+            const url = 'https://google.com'
+
+            new CheckService(
+                // here I am injecting the functions defined on check service
+                () => console.log(`${url}, status: ok`),
+                ( error ) => console.log( error ),
+            ).execute( url )
             // new CheckService().execute( 'http://localhost:3000/posts' )
         })
         
