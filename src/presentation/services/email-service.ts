@@ -43,21 +43,8 @@ export class EmailService {
                 attachments
             });
 
-            console.log(sentInformation);
-            const log = new LogEntity({
-                level: LogSeverityLevel.low,
-                message: 'Email sent',
-                origin: 'email-service',
-            })
-
             return true;
         } catch (error) {
-            const log = new LogEntity({
-                level: LogSeverityLevel.high,
-                message: 'Error sending Email',
-                origin: 'email-service',
-            })
-
             return false;
         }
     }
@@ -79,7 +66,4 @@ export class EmailService {
 
        return this.sendEmail({ to, subject, htmlBody, attachments });
     }
-
-
-
 }
